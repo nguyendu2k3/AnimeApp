@@ -27,13 +27,14 @@ namespace AnimeApp.BLL
                 return builder.ToString();
             }
         }
+       
         public User XacThucNguoiDung(string username, string password)
         {
             User user = _userDAO.LayTenNguoiDung(username);
             if(user != null )
             {
                 string maHoaMK = MaHoaMatKhau(password);
-                if(user.MatKhau == password)//maHoaMK
+                if(user.MatKhau == maHoaMK)
                 {
                     return user;
                 }

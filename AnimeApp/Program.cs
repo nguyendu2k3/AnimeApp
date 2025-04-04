@@ -18,7 +18,7 @@ namespace AnimeApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             // Tạo và hiển thị form đăng nhập
-            LoginForm loginForm = new LoginForm();
+            Title loginForm = new Title();
             Application.Run(loginForm);
 
         }

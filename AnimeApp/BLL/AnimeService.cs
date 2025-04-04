@@ -19,6 +19,11 @@ namespace AnimeApp.BLL
         {
             return await _api.GetTopAnime(page);
         }
+        public async Task<List<Anime>> GetAnimeNews()
+        {
+            
+            return await _api.GetAnimeNews();
+        }
         public async Task<List<Anime>> SearchAnime(string query, int page = 1)
         {
             return await _api.SearchAnime(query, page);

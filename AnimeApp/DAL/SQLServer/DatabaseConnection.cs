@@ -10,7 +10,7 @@ namespace AnimeApp.DAL.SQLServer
 {
     public class DatabaseConnection
     {
-        private static string connectionString = @"Data Source=DESKTOP-088GQ4I;Initial Catalog=AnimeDB;Integrated Security=True";
+        private static string connectionString = @"Data Source=DUXINH;Initial Catalog=AnimeDB;User ID=sa;Password=123";
 
         public static SqlConnection KetNoi()
         {

@@ -1,156 +1,211 @@
 ﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 using System.Collections.Generic;
-using AnimeApp.DAL.Models;
+using System.Linq;
+using System.Threading.Tasks;
+using JikanDotNet;
+using JikanAnime = JikanDotNet.Anime;
+using LocalAnime = AnimeApp.DAL.Models.Anime;
 
 namespace AnimeApp.DAL.API
 {
     public class MyAnimeListAPI
     {
-        private readonly HttpClient _client;
-        private const string BaseUrl = "https://api.jikan.moe/v4";
+        private readonly IJikan _jikan;
+
         public MyAnimeListAPI()
         {
-            _client = new HttpClient();
-            _client.DefaultRequestHeaders.Add("User-Agent", "AnimeApp");
+            _jikan = new Jikan();
         }
-        public async Task<List<Anime>> GetTopAnime(int page = 1)
-        {
-            string url = $"{BaseUrl}/top/anime?page={page}";
-            HttpResponseMessage response = await _client.GetAsync(url);
 
-            if (response.IsSuccessStatusCode)
+        public async Task<List<LocalAnime>> GetTopAnime(int page = 1)
+        {
+            try
             {
-                string json = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<JikanResponse>(json);
-                return ConvertToAnimeList(result.data);
+                var topAnime = await _jikan.GetTopAnimeAsync(page);
+                return ConvertToAnimeList(topAnime.Data);
             }
-
-            return new List<Anime>();
-        }
-        public async Task<List<Anime>> SearchAnime(string query, int page = 1)
-        {
-            string url = $"{BaseUrl}/anime?q={query}&page={page}";
-            HttpResponseMessage response = await _client.GetAsync(url);
-
-            if (response.IsSuccessStatusCode)
+            catch (Exception ex)
             {
-                string json = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<JikanResponse>(json);
-                return ConvertToAnimeList(result.data);
+                Console.WriteLine($"Error getting top anime: {ex.Message}");
+                return new List<LocalAnime>();
             }
-
-            return new List<Anime>();
         }
-        public async Task<Anime> GetAnimeById(int id)
-        {
-            string url = $"{BaseUrl}/anime/{id}";
-            HttpResponseMessage response = await _client.GetAsync(url);
 
-            if (response.IsSuccessStatusCode)
+        public async Task<List<LocalAnime>> GetAnimeNews()
+        {
+            try
             {
-                string json = await response.Content.ReadAsStringAsync();
-                var animeData = JsonConvert.DeserializeObject<JikanAnimeData>(json);
-                return ConvertToAnime(animeData.data);
+                var watchEpisodes = await _jikan.GetWatchRecentEpisodesAsync();
+                return ConvertWatchEpisodesToAnimeList(watchEpisodes.Data);
             }
-
-            return null;
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error getting anime news: {ex.Message}");
+                return new List<LocalAnime>();
+            }
         }
-        private List<Anime> ConvertToAnimeList(List<JikanAnimeItem> items)
+
+        public async Task<List<LocalAnime>> SearchAnime(string query, int page = 1)
         {
-            List<Anime> animeList = new List<Anime>();
+            try
+            {
+                var searchConfig = new AnimeSearchConfig
+                {
+                    Page = page,
+                    Query = query
+                };
+
+                var searchResult = await _jikan.SearchAnimeAsync(searchConfig);
+                return ConvertToAnimeList(searchResult.Data);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error searching anime: {ex.Message}");
+                return new List<LocalAnime>();
+            }
+        }
+
+        public async Task<LocalAnime> GetAnimeById(int id)
+        {
+            try
+            {
+                var animeData = await _jikan.GetAnimeAsync(id);
+                return ConvertToAnime(animeData.Data);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error getting anime by ID: {ex.Message}");
+                return null;
+            }
+        }
+
+        private List<LocalAnime> ConvertToAnimeList(ICollection<JikanAnime> items)
+        {
+            var animeList = new List<LocalAnime>();
 
             foreach (var item in items)
             {
-                animeList.Add(new Anime
-                {
-                    MyAnimeListID = item.mal_id,
-                    TenAnime = item.title,
-                    TenAnimeJapanese = item.title_japanese,
-                    MoTa = item.synopsis,
-                    HinhAnh = item.images.jpg.large_image_url,
-                    Kieu = item.type,
-                    TapPhim = item.episodes,
-                    DanhGia = item.score,
-                    NgayPhatHanh = item.aired.from.HasValue ? item.aired.from.Value : DateTime.MinValue,
-                    TrangThai = item.status,
-                    TheLoai = ConvertGenres(item.genres)
-                });
+                animeList.Add(ConvertToAnime(item));
             }
 
             return animeList;
         }
-        private Anime ConvertToAnime(JikanAnimeItem item)
+
+        private LocalAnime ConvertToAnime(JikanAnime item)
         {
-            return new Anime
+            return new LocalAnime
             {
-                MyAnimeListID = item.mal_id,
-                TenAnime = item.title,
-                TenAnimeJapanese = item.title_japanese,
-                MoTa = item.synopsis,
-                HinhAnh = item.images.jpg.large_image_url,
-                Kieu = item.type,
-                TapPhim = item.episodes,
-                DanhGia = item.score,
-                NgayPhatHanh = item.aired.from.HasValue ? item.aired.from.Value : DateTime.MinValue,
-                TrangThai = item.status,
-                TheLoai = ConvertGenres(item.genres)
+                MyAnimeListID = item.MalId.HasValue ? (int)item.MalId.Value : 0,
+                TenAnime = item.Titles?.FirstOrDefault(t => t.Type == "Default")?.Title ?? string.Empty, // Use Titles property
+                TenAnimeJapanese = item.Titles?.FirstOrDefault(t => t.Type == "Japanese")?.Title ?? string.Empty, // Use Titles property
+                MoTa = item.Synopsis ?? string.Empty,
+                HinhAnh = item.Images?.JPG?.LargeImageUrl ?? string.Empty,
+                Kieu = item.Type?.ToString() ?? string.Empty,
+                TapPhim = item.Episodes ?? 0,
+                DanhGia = (float)(item.Score ?? 0), 
+                NgayPhatHanh = item.Aired?.From ?? DateTime.MinValue,
+                TrangThai = item.Status?.ToString() ?? string.Empty,
+                TheLoai = ConvertGenres(item.Genres)
             };
         }
-        private List<string> ConvertGenres(List<JikanGenre> genres)
+
+        private List<string> ConvertGenres(ICollection<MalUrl> genres)
         {
-            List<string> genreList = new List<string>();
-            foreach (var genre in genres)
+            var genreList = new List<string>();
+            if (genres != null)
             {
-                genreList.Add(genre.name);
+                foreach (var genre in genres)
+                {
+                    genreList.Add(genre.Name);
+                }
             }
             return genreList;
         }
-        private class JikanResponse
+
+        private List<LocalAnime> ConvertWatchEpisodesToAnimeList(ICollection<WatchEpisode> watchEpisodes)
         {
-            public List<JikanAnimeItem> data { get; set; }
+            var animeList = new List<LocalAnime>();
+
+            foreach (var episode in watchEpisodes)
+            {
+                var entry = episode.Entry;
+                foreach (var ep in episode.Episodes)
+                {
+                    animeList.Add(new LocalAnime
+                    {
+                        MyAnimeListID = (int)entry.MalId,
+                        TenAnime = entry.Title ?? string.Empty,
+                        HinhAnh = entry.Images?.JPG?.LargeImageUrl ?? string.Empty,
+                        MoTa = $"Episode: {ep.Title}\nURL: {ep.Url}\nPremium: {(ep.Premium ?? false ? "Yes" : "No")}", // Handle nullable bool
+                        TrangThai = ep.Premium ?? false ? "Premium" : "Free",
+                        TenAnimeJapanese = string.Empty,
+                        Kieu = "Episode",
+                        TapPhim = (int)ep.MalId, 
+                        DanhGia = 0,
+                        NgayPhatHanh = DateTime.UtcNow,
+                        TheLoai = new List<string>()
+                    });
+                }
+            }
+
+            return animeList;
         }
 
-        private class JikanAnimeData
+        public async Task<List<AnimeEpisode>> GetLatestEpisodes(int page = 1)
         {
-            public JikanAnimeItem data { get; set; }
+            try
+            {
+                var watchEpisodes = await _jikan.GetWatchRecentEpisodesAsync();
+                return ConvertToEpisodeList(watchEpisodes.Data);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error getting latest episodes: {ex.Message}");
+                return new List<AnimeEpisode>();
+            }
         }
 
-        private class JikanAnimeItem
+        private List<AnimeEpisode> ConvertToEpisodeList(ICollection<WatchEpisode> watchEpisodes)
         {
-            public int mal_id { get; set; }
-            public string title { get; set; }
-            public string title_japanese { get; set; }
-            public string synopsis { get; set; }
-            public JikanImages images { get; set; }
-            public string type { get; set; }
-            public int episodes { get; set; }
-            public float score { get; set; }
-            public JikanAired aired { get; set; }
-            public string status { get; set; }
-            public List<JikanGenre> genres { get; set; }
-        }
-        private class JikanImages
-        {
-            public JikanImageUrl jpg { get; set; }
-        }
+            var episodeList = new List<AnimeEpisode>();
 
-        private class JikanImageUrl
-        {
-            public string large_image_url { get; set; }
-        }
+            foreach (var episode in watchEpisodes)
+            {
+                var entry = episode.Entry;
+                foreach (var ep in episode.Episodes)
+                {
+                    episodeList.Add(new AnimeEpisode
+                    {
+                        MalId = (int)entry.MalId,
+                        Title = entry.Title ?? string.Empty,
+                        EpisodeTitle = ep.Title,
+                        Url = ep.Url,
+                        IsPremium = ep.Premium ?? false, 
+                        ThumbnailUrl = entry.Images?.JPG?.LargeImageUrl,
+                        IsRegionLocked = episode.RegionLocked
+                    });
+                }
+            }
 
-        private class JikanAired
-        {
-            public DateTime? from { get; set; }
+            return episodeList;
         }
-
-        private class JikanGenre
-        {
-            public int mal_id { get; set; }
-            public string name { get; set; }
-        }
+    }
+    public class AnimeEpisode
+    {
+        public long MalId { get; set; }
+        public string Url { get; set; }
+        public string Title { get; set; }
+        public string TitleJapanese { get; set; }
+        public string TitleRomanji { get; set; }
+        public int? Duration { get; set; }
+        public DateTime? Aired { get; set; }
+        public bool? Filler { get; set; }
+        public bool? Recap { get; set; }
+        public string Synopsis { get; set; }
+        public string ForumUrl { get; set; }
+        public string ThumbnailUrl { get; set; } 
+        public bool? IsRegionLocked { get; set; }
+        public bool? IsPremium { get; set; }
+        public string EpisodeTitle { get; set; }
     }
 }
