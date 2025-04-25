@@ -30,9 +30,9 @@ namespace AnimeApp.DAL.SQLServer
                     }
                     command.ExecuteNonQuery();
                 }
-
             }
         }
+
         public static DataTable ExecuteQuery(string query, SqlParameter[] parameters = null)
         {
             DataTable dataTable = new DataTable();
@@ -45,6 +45,17 @@ namespace AnimeApp.DAL.SQLServer
                     {
                         command.Parameters.AddRange(parameters);
                     }
+
+                    // Log the query and parameters
+                    Console.WriteLine("Executing Query: " + query);
+                    if (parameters != null)
+                    {
+                        foreach (var param in parameters)
+                        {
+                            Console.WriteLine($"Parameter: {param.ParameterName} = {param.Value}");
+                        }
+                    }
+
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                     {
                         adapter.Fill(dataTable);
@@ -53,5 +64,5 @@ namespace AnimeApp.DAL.SQLServer
             }
             return dataTable;
         }
-    } 
+    }
 }

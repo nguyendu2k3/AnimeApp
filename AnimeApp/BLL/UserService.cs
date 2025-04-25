@@ -14,7 +14,7 @@ namespace AnimeApp.BLL
         {
             _userDAO = new UserDAO();
         }
-        private string MaHoaMatKhau(string password)
+        public string MaHoaMatKhau(string password)
         {
             using (SHA256 sha256 = SHA256.Create())
             {

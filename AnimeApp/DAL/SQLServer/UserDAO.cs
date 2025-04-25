@@ -81,15 +81,13 @@ namespace AnimeApp.DAL.SQLServer
         }
         public bool CapNhatNguoiDung(User user)
         {
-            string query = @"UPDATE Users SET TenDangNhap = @TenDangNhap, MatKhau =@MatKhau,
-                             Email = @Email, VaiTro = @VaiTro WHERE UserID = @UserID";
+            string query = @"UPDATE Users SET MatKhau =@MatKhau,
+                             Email = @Email WHERE UserID = @UserID";
             SqlParameter[] parameters = new SqlParameter[]
             {
-                new SqlParameter ("@TenDangNhap", user.TenDangNhap),
                 new SqlParameter ("@MatKhau", user.MatKhau),
                 new SqlParameter ("@email", user.Email),
-                new SqlParameter ("@VaiTro", user.VaiTro),
-                new SqlParameter ("@NgayTao", DateTime.Now)
+                new SqlParameter ("@UserID", user.UserID)
             };
 
             try

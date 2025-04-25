@@ -1,4 +1,6 @@
-﻿namespace AnimeApp.GUI.Forms
+﻿using System.Windows.Forms;
+
+namespace AnimeApp.GUI.Forms
 {
     partial class AnimeManagementForm
     {
@@ -28,299 +30,530 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnTimKiem = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.sidebarPanel = new System.Windows.Forms.Panel();
-            this.btnCaiDat = new System.Windows.Forms.Button();
-            this.btnTaiKhoan = new System.Windows.Forms.Button();
-            this.btnLichSu = new System.Windows.Forms.Button();
-            this.btnThuVien = new System.Windows.Forms.Button();
-            this.btnMua = new System.Windows.Forms.Button();
-            this.btnTheLoai = new System.Windows.Forms.Button();
-            this.btnTrangChu = new System.Windows.Forms.Button();
+            this.components = new System.ComponentModel.Container();
+            this.searchPanel = new System.Windows.Forms.Panel();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.dgvAnime = new System.Windows.Forms.DataGridView();
+            this.inputPanel = new System.Windows.Forms.Panel();
+            this.cbKieu = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.animeDetailsPanel = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
-            this.sidebarPanel.SuspendLayout();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnXoa = new System.Windows.Forms.Button();
+            this.btnSua = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.txtMoTa = new System.Windows.Forms.TextBox();
+            this.txtDanhGia = new System.Windows.Forms.TextBox();
+            this.txtTenAnimeJapanese = new System.Windows.Forms.TextBox();
+            this.txtTenAnime = new System.Windows.Forms.TextBox();
+            this.txtHinhAnh = new System.Windows.Forms.TextBox();
+            this.txtMyAnimeListID = new System.Windows.Forms.TextBox();
+            this.animeDBDataSet = new AnimeApp.AnimeDBDataSet();
+            this.animeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.animeTableAdapter = new AnimeApp.AnimeDBDataSetTableAdapters.AnimeTableAdapter();
+            this.dtpNgayPhatHanh = new System.Windows.Forms.DateTimePicker();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtTapPhim = new System.Windows.Forms.TextBox();
+            this.AnimeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MyAnimeListID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenAnime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenAnimeJapanese = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MoTa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HinhAnh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Kieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TapPhim = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DanhGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgayPhatHanh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbTrangThai = new System.Windows.Forms.ComboBox();
+            this.txtAnimeID = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.searchPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAnime)).BeginInit();
+            this.inputPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.animeDBDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.animeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // searchPanel
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(24)))), ((int)(((byte)(34)))));
-            this.panel1.Controls.Add(this.btnTimKiem);
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(934, 50);
-            this.panel1.TabIndex = 1;
+            this.searchPanel.Controls.Add(this.btnSearch);
+            this.searchPanel.Controls.Add(this.txtSearch);
+            this.searchPanel.Location = new System.Drawing.Point(10, 10);
+            this.searchPanel.Name = "searchPanel";
+            this.searchPanel.Size = new System.Drawing.Size(899, 50);
+            this.searchPanel.TabIndex = 0;
             // 
-            // btnTimKiem
+            // btnSearch
             // 
-            this.btnTimKiem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(54)))), ((int)(((byte)(72)))));
-            this.btnTimKiem.FlatAppearance.BorderSize = 0;
-            this.btnTimKiem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnTimKiem.Location = new System.Drawing.Point(732, 12);
-            this.btnTimKiem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnTimKiem.Name = "btnTimKiem";
-            this.btnTimKiem.Size = new System.Drawing.Size(20, 20);
-            this.btnTimKiem.TabIndex = 4;
-            this.btnTimKiem.Text = "🔍";
-            this.btnTimKiem.UseVisualStyleBackColor = false;
+            this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnSearch.ForeColor = System.Drawing.Color.White;
+            this.btnSearch.Location = new System.Drawing.Point(216, 11);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(100, 30);
+            this.btnSearch.TabIndex = 1;
+            this.btnSearch.Text = "Tìm kiếm";
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // textBox1
+            // txtSearch
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(54)))), ((int)(((byte)(72)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(141)))), ((int)(((byte)(156)))));
-            this.textBox1.Location = new System.Drawing.Point(350, 12);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(402, 20);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "Tìm kiếm anime...";
+            this.txtSearch.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtSearch.Location = new System.Drawing.Point(10, 15);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(200, 25);
+            this.txtSearch.TabIndex = 0;
             // 
-            // label1
+            // dgvAnime
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(29, 10);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 28);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "AnimeApp";
+            this.dgvAnime.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvAnime.BackgroundColor = System.Drawing.Color.White;
+            this.dgvAnime.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvAnime.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAnime.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.AnimeID,
+            this.MyAnimeListID,
+            this.TenAnime,
+            this.TenAnimeJapanese,
+            this.MoTa,
+            this.HinhAnh,
+            this.Kieu,
+            this.TapPhim,
+            this.DanhGia,
+            this.NgayPhatHanh,
+            this.TrangThai});
+            this.dgvAnime.Location = new System.Drawing.Point(10, 70);
+            this.dgvAnime.Name = "dgvAnime";
+            this.dgvAnime.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAnime.Size = new System.Drawing.Size(899, 300);
+            this.dgvAnime.TabIndex = 0;
+            this.dgvAnime.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAnime_CellContentClick);
             // 
-            // sidebarPanel
+            // inputPanel
             // 
-            this.sidebarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(40)))));
-            this.sidebarPanel.Controls.Add(this.panel2);
-            this.sidebarPanel.Controls.Add(this.btnCaiDat);
-            this.sidebarPanel.Controls.Add(this.btnTaiKhoan);
-            this.sidebarPanel.Controls.Add(this.btnLichSu);
-            this.sidebarPanel.Controls.Add(this.btnThuVien);
-            this.sidebarPanel.Controls.Add(this.btnMua);
-            this.sidebarPanel.Controls.Add(this.btnTheLoai);
-            this.sidebarPanel.Controls.Add(this.btnTrangChu);
-            this.sidebarPanel.Controls.Add(this.label3);
-            this.sidebarPanel.Controls.Add(this.label2);
-            this.sidebarPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.sidebarPanel.Location = new System.Drawing.Point(0, 50);
-            this.sidebarPanel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.sidebarPanel.Name = "sidebarPanel";
-            this.sidebarPanel.Size = new System.Drawing.Size(198, 711);
-            this.sidebarPanel.TabIndex = 2;
+            this.inputPanel.Controls.Add(this.dtpNgayPhatHanh);
+            this.inputPanel.Controls.Add(this.cbTrangThai);
+            this.inputPanel.Controls.Add(this.cbKieu);
+            this.inputPanel.Controls.Add(this.label8);
+            this.inputPanel.Controls.Add(this.label4);
+            this.inputPanel.Controls.Add(this.label9);
+            this.inputPanel.Controls.Add(this.label7);
+            this.inputPanel.Controls.Add(this.label3);
+            this.inputPanel.Controls.Add(this.label10);
+            this.inputPanel.Controls.Add(this.label6);
+            this.inputPanel.Controls.Add(this.label2);
+            this.inputPanel.Controls.Add(this.label5);
+            this.inputPanel.Controls.Add(this.label11);
+            this.inputPanel.Controls.Add(this.label1);
+            this.inputPanel.Controls.Add(this.btnXoa);
+            this.inputPanel.Controls.Add(this.btnSua);
+            this.inputPanel.Controls.Add(this.btnAdd);
+            this.inputPanel.Controls.Add(this.txtMoTa);
+            this.inputPanel.Controls.Add(this.txtTapPhim);
+            this.inputPanel.Controls.Add(this.txtDanhGia);
+            this.inputPanel.Controls.Add(this.txtTenAnimeJapanese);
+            this.inputPanel.Controls.Add(this.txtTenAnime);
+            this.inputPanel.Controls.Add(this.txtHinhAnh);
+            this.inputPanel.Controls.Add(this.txtAnimeID);
+            this.inputPanel.Controls.Add(this.txtMyAnimeListID);
+            this.inputPanel.Location = new System.Drawing.Point(10, 380);
+            this.inputPanel.Name = "inputPanel";
+            this.inputPanel.Size = new System.Drawing.Size(899, 322);
+            this.inputPanel.TabIndex = 1;
             // 
-            // btnCaiDat
+            // cbKieu
             // 
-            this.btnCaiDat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(28)))), ((int)(((byte)(45)))));
-            this.btnCaiDat.FlatAppearance.BorderSize = 0;
-            this.btnCaiDat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
-            this.btnCaiDat.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
-            this.btnCaiDat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCaiDat.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnCaiDat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.btnCaiDat.Location = new System.Drawing.Point(14, 337);
-            this.btnCaiDat.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnCaiDat.Name = "btnCaiDat";
-            this.btnCaiDat.Size = new System.Drawing.Size(175, 35);
-            this.btnCaiDat.TabIndex = 3;
-            this.btnCaiDat.Text = "Cài Đặt";
-            this.btnCaiDat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCaiDat.UseVisualStyleBackColor = false;
+            this.cbKieu.FormattingEnabled = true;
+            this.cbKieu.Items.AddRange(new object[] {
+            "TV Special",
+            "TV",
+            "Movie",
+            "OVA",
+            "ONA",
+            "Special",
+            "Music"});
+            this.cbKieu.Location = new System.Drawing.Point(105, 166);
+            this.cbKieu.Name = "cbKieu";
+            this.cbKieu.Size = new System.Drawing.Size(542, 21);
+            this.cbKieu.TabIndex = 5;
             // 
-            // btnTaiKhoan
+            // label8
             // 
-            this.btnTaiKhoan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(28)))), ((int)(((byte)(45)))));
-            this.btnTaiKhoan.FlatAppearance.BorderSize = 0;
-            this.btnTaiKhoan.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
-            this.btnTaiKhoan.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
-            this.btnTaiKhoan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTaiKhoan.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnTaiKhoan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.btnTaiKhoan.Location = new System.Drawing.Point(14, 296);
-            this.btnTaiKhoan.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnTaiKhoan.Name = "btnTaiKhoan";
-            this.btnTaiKhoan.Size = new System.Drawing.Size(175, 35);
-            this.btnTaiKhoan.TabIndex = 3;
-            this.btnTaiKhoan.Text = "Tài Khoản";
-            this.btnTaiKhoan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTaiKhoan.UseVisualStyleBackColor = false;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(3, 279);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(56, 13);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "TrangThai";
             // 
-            // btnLichSu
+            // label4
             // 
-            this.btnLichSu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(28)))), ((int)(((byte)(45)))));
-            this.btnLichSu.FlatAppearance.BorderSize = 0;
-            this.btnLichSu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
-            this.btnLichSu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
-            this.btnLichSu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLichSu.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnLichSu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.btnLichSu.Location = new System.Drawing.Point(14, 204);
-            this.btnLichSu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnLichSu.Name = "btnLichSu";
-            this.btnLichSu.Size = new System.Drawing.Size(175, 35);
-            this.btnLichSu.TabIndex = 3;
-            this.btnLichSu.Text = "Lịch sử";
-            this.btnLichSu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLichSu.UseVisualStyleBackColor = false;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(4, 117);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "MoTa";
             // 
-            // btnThuVien
+            // label7
             // 
-            this.btnThuVien.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(28)))), ((int)(((byte)(45)))));
-            this.btnThuVien.FlatAppearance.BorderSize = 0;
-            this.btnThuVien.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
-            this.btnThuVien.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
-            this.btnThuVien.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnThuVien.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnThuVien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.btnThuVien.Location = new System.Drawing.Point(14, 163);
-            this.btnThuVien.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnThuVien.Name = "btnThuVien";
-            this.btnThuVien.Size = new System.Drawing.Size(175, 35);
-            this.btnThuVien.TabIndex = 3;
-            this.btnThuVien.Text = "Thư viện";
-            this.btnThuVien.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnThuVien.UseVisualStyleBackColor = false;
-            // 
-            // btnMua
-            // 
-            this.btnMua.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(28)))), ((int)(((byte)(45)))));
-            this.btnMua.FlatAppearance.BorderSize = 0;
-            this.btnMua.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
-            this.btnMua.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
-            this.btnMua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMua.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnMua.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.btnMua.Location = new System.Drawing.Point(14, 122);
-            this.btnMua.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnMua.Name = "btnMua";
-            this.btnMua.Size = new System.Drawing.Size(175, 35);
-            this.btnMua.TabIndex = 3;
-            this.btnMua.Text = "Anime Theo Mùa";
-            this.btnMua.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMua.UseVisualStyleBackColor = false;
-            // 
-            // btnTheLoai
-            // 
-            this.btnTheLoai.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(28)))), ((int)(((byte)(45)))));
-            this.btnTheLoai.FlatAppearance.BorderSize = 0;
-            this.btnTheLoai.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
-            this.btnTheLoai.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
-            this.btnTheLoai.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTheLoai.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnTheLoai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.btnTheLoai.Location = new System.Drawing.Point(14, 81);
-            this.btnTheLoai.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnTheLoai.Name = "btnTheLoai";
-            this.btnTheLoai.Size = new System.Drawing.Size(175, 35);
-            this.btnTheLoai.TabIndex = 3;
-            this.btnTheLoai.Text = "Thể Loại";
-            this.btnTheLoai.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTheLoai.UseVisualStyleBackColor = false;
-            // 
-            // btnTrangChu
-            // 
-            this.btnTrangChu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(28)))), ((int)(((byte)(45)))));
-            this.btnTrangChu.FlatAppearance.BorderSize = 0;
-            this.btnTrangChu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
-            this.btnTrangChu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
-            this.btnTrangChu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTrangChu.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnTrangChu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.btnTrangChu.Location = new System.Drawing.Point(14, 40);
-            this.btnTrangChu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnTrangChu.Name = "btnTrangChu";
-            this.btnTrangChu.Size = new System.Drawing.Size(175, 35);
-            this.btnTrangChu.TabIndex = 3;
-            this.btnTrangChu.Text = "Trang chủ";
-            this.btnTrangChu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTrangChu.UseVisualStyleBackColor = false;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(4, 225);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(49, 13);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "DanhGia";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label3.ForeColor = System.Drawing.Color.Gray;
-            this.label3.Location = new System.Drawing.Point(14, 262);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(4, 91);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 15);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Thiết lập";
+            this.label3.Size = new System.Drawing.Size(101, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "TenAnimeJapanese";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(7, 144);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(28, 13);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Kieu";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label2.ForeColor = System.Drawing.Color.Gray;
-            this.label2.Location = new System.Drawing.Point(14, 13);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(4, 65);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 15);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Menu";
+            this.label2.Size = new System.Drawing.Size(55, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "TenAnime";
             // 
-            // panel2
+            // label5
             // 
-            this.panel2.Location = new System.Drawing.Point(196, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 100);
-            this.panel2.TabIndex = 3;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(4, 143);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(48, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "HinhAnh";
             // 
-            // animeDetailsPanel
+            // label1
             // 
-            this.animeDetailsPanel.AutoScroll = true;
-            this.animeDetailsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(40)))));
-            this.animeDetailsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.animeDetailsPanel.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.animeDetailsPanel.Location = new System.Drawing.Point(198, 50);
-            this.animeDetailsPanel.Name = "animeDetailsPanel";
-            this.animeDetailsPanel.Size = new System.Drawing.Size(736, 711);
-            this.animeDetailsPanel.TabIndex = 3;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "MyAnimeListID";
+            // 
+            // btnXoa
+            // 
+            this.btnXoa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.btnXoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnXoa.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnXoa.ForeColor = System.Drawing.Color.White;
+            this.btnXoa.Location = new System.Drawing.Point(655, 107);
+            this.btnXoa.Margin = new System.Windows.Forms.Padding(0);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(100, 34);
+            this.btnXoa.TabIndex = 3;
+            this.btnXoa.Text = "Xóa";
+            this.btnXoa.UseVisualStyleBackColor = false;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            // 
+            // btnSua
+            // 
+            this.btnSua.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.btnSua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSua.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnSua.ForeColor = System.Drawing.Color.White;
+            this.btnSua.Location = new System.Drawing.Point(655, 73);
+            this.btnSua.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(100, 34);
+            this.btnSua.TabIndex = 3;
+            this.btnSua.Text = "Sửa";
+            this.btnSua.UseVisualStyleBackColor = false;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Location = new System.Drawing.Point(655, 39);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(100, 34);
+            this.btnAdd.TabIndex = 3;
+            this.btnAdd.Text = "Thêm";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // txtMoTa
+            // 
+            this.txtMoTa.Location = new System.Drawing.Point(105, 114);
+            this.txtMoTa.Name = "txtMoTa";
+            this.txtMoTa.Size = new System.Drawing.Size(542, 20);
+            this.txtMoTa.TabIndex = 2;
+            // 
+            // txtDanhGia
+            // 
+            this.txtDanhGia.Location = new System.Drawing.Point(105, 222);
+            this.txtDanhGia.Name = "txtDanhGia";
+            this.txtDanhGia.Size = new System.Drawing.Size(542, 20);
+            this.txtDanhGia.TabIndex = 2;
+            // 
+            // txtTenAnimeJapanese
+            // 
+            this.txtTenAnimeJapanese.Location = new System.Drawing.Point(105, 88);
+            this.txtTenAnimeJapanese.Name = "txtTenAnimeJapanese";
+            this.txtTenAnimeJapanese.Size = new System.Drawing.Size(542, 20);
+            this.txtTenAnimeJapanese.TabIndex = 2;
+            // 
+            // txtTenAnime
+            // 
+            this.txtTenAnime.Location = new System.Drawing.Point(105, 62);
+            this.txtTenAnime.Name = "txtTenAnime";
+            this.txtTenAnime.Size = new System.Drawing.Size(542, 20);
+            this.txtTenAnime.TabIndex = 2;
+            // 
+            // txtHinhAnh
+            // 
+            this.txtHinhAnh.Location = new System.Drawing.Point(105, 140);
+            this.txtHinhAnh.Name = "txtHinhAnh";
+            this.txtHinhAnh.Size = new System.Drawing.Size(542, 20);
+            this.txtHinhAnh.TabIndex = 2;
+            // 
+            // txtMyAnimeListID
+            // 
+            this.txtMyAnimeListID.Location = new System.Drawing.Point(105, 36);
+            this.txtMyAnimeListID.Name = "txtMyAnimeListID";
+            this.txtMyAnimeListID.Size = new System.Drawing.Size(542, 20);
+            this.txtMyAnimeListID.TabIndex = 2;
+            // 
+            // animeDBDataSet
+            // 
+            this.animeDBDataSet.DataSetName = "AnimeDBDataSet";
+            this.animeDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // animeBindingSource
+            // 
+            this.animeBindingSource.DataMember = "Anime";
+            this.animeBindingSource.DataSource = this.animeDBDataSet;
+            // 
+            // animeTableAdapter
+            // 
+            this.animeTableAdapter.ClearBeforeFill = true;
+            // 
+            // dtpNgayPhatHanh
+            // 
+            this.dtpNgayPhatHanh.Location = new System.Drawing.Point(105, 250);
+            this.dtpNgayPhatHanh.Name = "dtpNgayPhatHanh";
+            this.dtpNgayPhatHanh.Size = new System.Drawing.Size(200, 20);
+            this.dtpNgayPhatHanh.TabIndex = 2;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(4, 250);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(80, 13);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "NgayPhatHanh";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(3, 196);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(49, 13);
+            this.label10.TabIndex = 4;
+            this.label10.Text = "TapPhim";
+            // 
+            // txtTapPhim
+            // 
+            this.txtTapPhim.Location = new System.Drawing.Point(104, 196);
+            this.txtTapPhim.Name = "txtTapPhim";
+            this.txtTapPhim.Size = new System.Drawing.Size(542, 20);
+            this.txtTapPhim.TabIndex = 2;
+            // 
+            // AnimeID
+            // 
+            this.AnimeID.DataPropertyName = "AnimeID";
+            this.AnimeID.HeaderText = "AnimeID";
+            this.AnimeID.Name = "AnimeID";
+            // 
+            // MyAnimeListID
+            // 
+            this.MyAnimeListID.DataPropertyName = "MyAnimeListID";
+            this.MyAnimeListID.HeaderText = "MyAnimeListID";
+            this.MyAnimeListID.Name = "MyAnimeListID";
+            // 
+            // TenAnime
+            // 
+            this.TenAnime.DataPropertyName = "TenAnime";
+            this.TenAnime.HeaderText = "TenAnime";
+            this.TenAnime.Name = "TenAnime";
+            // 
+            // TenAnimeJapanese
+            // 
+            this.TenAnimeJapanese.DataPropertyName = "TenAnimeJapanese";
+            this.TenAnimeJapanese.HeaderText = "TenAnimeJapanese";
+            this.TenAnimeJapanese.Name = "TenAnimeJapanese";
+            // 
+            // MoTa
+            // 
+            this.MoTa.DataPropertyName = "MoTa";
+            this.MoTa.HeaderText = "MoTa";
+            this.MoTa.Name = "MoTa";
+            // 
+            // HinhAnh
+            // 
+            this.HinhAnh.DataPropertyName = "HinhAnh";
+            this.HinhAnh.HeaderText = "HinhAnh";
+            this.HinhAnh.Name = "HinhAnh";
+            // 
+            // Kieu
+            // 
+            this.Kieu.DataPropertyName = "Kieu";
+            this.Kieu.HeaderText = "Kieu";
+            this.Kieu.Name = "Kieu";
+            // 
+            // TapPhim
+            // 
+            this.TapPhim.DataPropertyName = "TapPhim";
+            this.TapPhim.HeaderText = "TapPhim";
+            this.TapPhim.Name = "TapPhim";
+            // 
+            // DanhGia
+            // 
+            this.DanhGia.DataPropertyName = "DanhGia";
+            this.DanhGia.HeaderText = "DanhGia";
+            this.DanhGia.Name = "DanhGia";
+            // 
+            // NgayPhatHanh
+            // 
+            this.NgayPhatHanh.DataPropertyName = "NgayPhatHanh";
+            this.NgayPhatHanh.HeaderText = "NgayPhatHanh";
+            this.NgayPhatHanh.Name = "NgayPhatHanh";
+            // 
+            // TrangThai
+            // 
+            this.TrangThai.DataPropertyName = "TrangThai";
+            this.TrangThai.HeaderText = "TrangThai";
+            this.TrangThai.Name = "TrangThai";
+            // 
+            // cbTrangThai
+            // 
+            this.cbTrangThai.FormattingEnabled = true;
+            this.cbTrangThai.Items.AddRange(new object[] {
+            "Finished Airing",
+            "Cyrrently Airing"});
+            this.cbTrangThai.Location = new System.Drawing.Point(104, 276);
+            this.cbTrangThai.Name = "cbTrangThai";
+            this.cbTrangThai.Size = new System.Drawing.Size(542, 21);
+            this.cbTrangThai.TabIndex = 5;
+            // 
+            // txtAnimeID
+            // 
+            this.txtAnimeID.Location = new System.Drawing.Point(104, 10);
+            this.txtAnimeID.Name = "txtAnimeID";
+            this.txtAnimeID.Size = new System.Drawing.Size(542, 20);
+            this.txtAnimeID.TabIndex = 2;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(3, 13);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(47, 13);
+            this.label11.TabIndex = 4;
+            this.label11.Text = "AnimeID";
             // 
             // AnimeManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(934, 761);
-            this.Controls.Add(this.animeDetailsPanel);
-            this.Controls.Add(this.sidebarPanel);
-            this.Controls.Add(this.panel1);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(924, 714);
+            this.Controls.Add(this.inputPanel);
+            this.Controls.Add(this.dgvAnime);
+            this.Controls.Add(this.searchPanel);
             this.Name = "AnimeManagementForm";
-            this.Text = "AnimeDetailsForm";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.sidebarPanel.ResumeLayout(false);
-            this.sidebarPanel.PerformLayout();
+            this.Text = "AnimeManagementForm";
+            this.Load += new System.EventHandler(this.AnimeManagementForm_Load);
+            this.searchPanel.ResumeLayout(false);
+            this.searchPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAnime)).EndInit();
+            this.inputPanel.ResumeLayout(false);
+            this.inputPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.animeDBDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.animeBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnTimKiem;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel sidebarPanel;
-        private System.Windows.Forms.Button btnCaiDat;
-        private System.Windows.Forms.Button btnTaiKhoan;
-        private System.Windows.Forms.Button btnLichSu;
-        private System.Windows.Forms.Button btnThuVien;
-        private System.Windows.Forms.Button btnMua;
-        private System.Windows.Forms.Button btnTheLoai;
-        private System.Windows.Forms.Button btnTrangChu;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel animeDetailsPanel;
+        private System.Windows.Forms.Panel searchPanel;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.DataGridView dgvAnime;
+        private System.Windows.Forms.Panel inputPanel;
+        private Button btnXoa;
+        private Button btnSua;
+        private Button btnAdd;
+        private TextBox txtMyAnimeListID;
+        private AnimeDBDataSet animeDBDataSet;
+        private BindingSource animeBindingSource;
+        private AnimeDBDataSetTableAdapters.AnimeTableAdapter animeTableAdapter;
+        private Label label8;
+        private Label label4;
+        private Label label7;
+        private Label label3;
+        private Label label6;
+        private Label label2;
+        private Label label5;
+        private Label label1;
+        private TextBox txtMoTa;
+        private TextBox txtDanhGia;
+        private TextBox txtTenAnimeJapanese;
+        private TextBox txtTenAnime;
+        private TextBox txtHinhAnh;
+        private ComboBox cbKieu;
+        private DateTimePicker dtpNgayPhatHanh;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private Label label9;
+        private Label label10;
+        private TextBox txtTapPhim;
+        private DataGridViewTextBoxColumn AnimeID;
+        private DataGridViewTextBoxColumn MyAnimeListID;
+        private DataGridViewTextBoxColumn TenAnime;
+        private DataGridViewTextBoxColumn TenAnimeJapanese;
+        private DataGridViewTextBoxColumn MoTa;
+        private DataGridViewTextBoxColumn HinhAnh;
+        private DataGridViewTextBoxColumn Kieu;
+        private DataGridViewTextBoxColumn TapPhim;
+        private DataGridViewTextBoxColumn DanhGia;
+        private DataGridViewTextBoxColumn NgayPhatHanh;
+        private DataGridViewTextBoxColumn TrangThai;
+        private ComboBox cbTrangThai;
+        private Label label11;
+        private TextBox txtAnimeID;
     }
 }

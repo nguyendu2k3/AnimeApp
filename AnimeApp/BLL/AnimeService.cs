@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using AnimeApp.DAL.API;
 using AnimeApp.DAL.Models;
-using AnimeApp.DAL.API;
 using AnimeApp.DAL.SQLServer;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Threading.Tasks;
 namespace AnimeApp.BLL
 {
     public class AnimeService
@@ -21,16 +22,35 @@ namespace AnimeApp.BLL
         }
         public async Task<List<Anime>> GetAnimeNews()
         {
-            
             return await _api.GetAnimeNews();
         }
-        public async Task<List<Anime>> SearchAnime(string query, int page = 1)
-        {
-            return await _api.SearchAnime(query, page);
-        }
+        //public async Task<List<Anime>> SearchAnime(string query, int page = 1)
+        //{
+        //    //return await _api.SearchAnime(query, page);
+        //}
         public async Task<Anime> GetAnimeDetails(int id)
         {
-            Anime anime = _animeDAO.GetAnimeByMyAnimeListId(id);
+            Anime anime = null;
+            try
+            {
+                anime = _animeDAO.GetAnimeByMyAnimeListId(id);
+            }
+            catch (SqlException ex)
+            {
+                // Log the exception
+                Console.WriteLine($"SQL Exception: {ex.Message}");
+                // Handle specific error for invalid object name
+                if (ex.Message.Contains("Invalid object name 'Animes'"))
+                {
+                    Console.WriteLine("The table 'Animes' does not exist in the database.");
+                    // Optionally, you can create the table here or notify the user/admin
+                }
+                else
+                {
+                    throw; // Re-throw the exception if it's not related to the table name
+                }
+            }
+
             if (anime == null)
             {
                 // If not found in database, fetch from API
@@ -44,6 +64,15 @@ namespace AnimeApp.BLL
             }
             return anime;
         }
+        public async Task<List<string>> GetAllAnimeGenres()
+        {
+            return await _api.GetAllAnimeGenres();
+        }
+
+        public List<Anime> GetAllAnimes()
+        {
+            return _animeDAO.GetAllAnimes();
+        }
         public bool ThemAnime(Anime anime)
         {
             return _animeDAO.ThemAnime(anime);
@@ -55,6 +84,10 @@ namespace AnimeApp.BLL
         public bool XoaAnime(int animeID)
         {
             return _animeDAO.XoaAnime(animeID);
+        }
+        public List<Anime> SearchAnime(String keyword)
+        {
+            return _animeDAO.TimKiemAnime(keyword);
         }
     }
 }
